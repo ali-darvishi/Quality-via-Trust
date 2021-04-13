@@ -5,10 +5,10 @@ library("ROCR")
 Total <- read_csv("Total.csv")
 Expert <- read_csv("Expert.csv")
 
-Expert=subset(Expert, Resource_ID %in% Total$Resource_ID)
+q_id=unique(Total$Resource_ID)
+Expert=subset(Expert, Resource_ID %in% q_id)
 moderations=subset(Total,Resource_ID %in% q_id)[,c('Resource_ID','User_ID','Decision')]
 u_id=unique(moderations$User_ID)
-q_id=unique(Total$Resource_ID)
 
 ################################################ Result evaluation function ################################################
 results <- function(Mean_expert,Bias_Users,w=3){
